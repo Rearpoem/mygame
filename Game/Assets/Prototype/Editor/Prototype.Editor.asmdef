@@ -1,0 +1,13 @@
+{
+  "name": "Prototype.Editor",
+  "rootNamespace": "Prototype.Editor",
+  "references": [
+    "Prototype.UnityClient",
+    "Prototype.Combat",
+    "Prototype.BaseEconomy",
+    "Unity.TextMeshPro",
+    "Unity.ugui"
+  ],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": true
+}

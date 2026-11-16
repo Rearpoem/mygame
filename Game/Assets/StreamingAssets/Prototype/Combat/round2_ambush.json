@@ -1,0 +1,174 @@
+{
+  "id": "round2-ambush",
+  "title": "抢杀伏击手：仅交换急救与普攻顺序",
+  "parameterNotice": "第二轮可替换试玩参数；所有伤害/治疗/WAIT/容量/状态/奖励均非正式平衡规则。固定种子仅记录，本配置无随机抽样。",
+  "seed": 20261114,
+  "randomUsed": false,
+  "alliesIncludeSelf": true,
+  "maxUnitsPerTeam": 6,
+  "gridRows": 3,
+  "gridColumns": 3,
+  "capacity": {
+    "baseSlots": 1,
+    "slotsPerIntelligence": 0.1,
+    "minimumSlots": 1,
+    "maximumSlots": 6,
+    "secondConditionAtIntelligence": 20,
+    "thirdConditionAtIntelligence": 40
+  },
+  "actions": [
+    {
+      "id": "first_aid",
+      "displayName": "急救",
+      "effectKind": "heal",
+      "magnitude": 45,
+      "mpCost": 6,
+      "baseWait": 40
+    },
+    {
+      "id": "basic_attack",
+      "displayName": "普攻",
+      "effectKind": "damage",
+      "magnitude": 18,
+      "mpCost": 0,
+      "baseWait": 60
+    },
+    {
+      "id": "ambush_strike",
+      "displayName": "伏击重击",
+      "effectKind": "damage",
+      "magnitude": 80,
+      "mpCost": 0,
+      "baseWait": 90
+    }
+  ],
+  "units": [
+    {
+      "id": "mage",
+      "name": "法师",
+      "team": "friendly",
+      "row": 2,
+      "column": 1,
+      "maxHp": 100,
+      "hp": 100,
+      "maxMp": 30,
+      "mp": 30,
+      "intelligence": 40,
+      "agilityFactor": 1,
+      "initialReadyTime": 0,
+      "vulnerable": false,
+      "instructions": [
+        {
+          "id": "emergency_heal",
+          "label": "先救濒危队友",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "hp_ratio_at_most",
+                "threshold": 0.35
+              }
+            ]
+          },
+          "scope": "allies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "first_aid"
+        },
+        {
+          "id": "fallback_attack",
+          "label": "否则攻击低血敌人",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "always",
+                "threshold": 0
+              }
+            ]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "basic_attack"
+        }
+      ],
+      "statuses": [],
+      "equipmentDamageBonus": 0,
+      "equipmentSourceId": "training_weapon"
+    },
+    {
+      "id": "ally",
+      "name": "队友",
+      "team": "friendly",
+      "row": 0,
+      "column": 1,
+      "maxHp": 100,
+      "hp": 20,
+      "maxMp": 10,
+      "mp": 10,
+      "intelligence": 10,
+      "agilityFactor": 1,
+      "initialReadyTime": 10,
+      "vulnerable": false,
+      "instructions": [
+        {
+          "id": "ally_attack",
+          "label": "攻击低血敌人",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "always",
+                "threshold": 0
+              }
+            ]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "basic_attack"
+        }
+      ],
+      "statuses": [],
+      "equipmentDamageBonus": 0,
+      "equipmentSourceId": "training_weapon"
+    },
+    {
+      "id": "enemy_low",
+      "name": "伏击手",
+      "team": "hostile",
+      "row": 0,
+      "column": 0,
+      "maxHp": 100,
+      "hp": 18,
+      "maxMp": 10,
+      "mp": 10,
+      "intelligence": 10,
+      "agilityFactor": 1,
+      "initialReadyTime": 5,
+      "vulnerable": false,
+      "instructions": [
+        {
+          "id": "enemy_low_attack",
+          "label": "攻击低血对手",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "always",
+                "threshold": 0
+              }
+            ]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "ambush_strike"
+        }
+      ],
+      "statuses": [],
+      "equipmentDamageBonus": 0,
+      "equipmentSourceId": "training_weapon"
+    }
+  ],
+  "playerTeam": "friendly",
+  "maxEvents": 2000,
+  "maxWait": 20000
+}

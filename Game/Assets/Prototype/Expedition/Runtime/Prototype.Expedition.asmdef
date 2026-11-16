@@ -1,0 +1,14 @@
+{
+  "name": "Prototype.Expedition",
+  "rootNamespace": "Prototype.Expedition",
+  "references": ["Prototype.Combat", "Prototype.BaseEconomy"],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": true
+}

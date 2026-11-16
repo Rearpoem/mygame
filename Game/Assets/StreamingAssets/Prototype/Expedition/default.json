@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "expedition-preparation-equipment-slice-v1",
+  "parameterNotice": "第二轮联动测试配置；全部数字均为可替换试玩参数，不是正式经济、成长或战斗规则。验证再战无现金、物品或经验奖励。Reset恢复全部加载开局并清除当前会话去重。",
+  "combatConfigPath": "Prototype/Combat/round2_expedition.json",
+  "preparationConfigPath": "Prototype/BaseEconomy/preparation.json",
+  "itemMappings": [
+    { "combatItemId": "expedition_ore", "preparationItemId": "expedition-ore" }
+  ],
+  "equipmentMappings": [
+    {
+      "preparationCombatantId": "guard-linen",
+      "combatUnitId": "ally",
+      "weaponInstanceId": "guard-linen-sword-001"
+    }
+  ],
+  "comparison": {
+    "templateEncounterIndex": 1,
+    "betweenWait": 0,
+    "enemyHpOverrides": [
+      { "unitId": "enemy_low", "hp": 40 },
+      { "unitId": "enemy_high", "hp": 40 }
+    ]
+  }
+}

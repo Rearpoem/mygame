@@ -1,0 +1,162 @@
+{
+  "id": "combat-first-aid-priority-test",
+  "title": "战斗首轮：急救与普攻优先级对照",
+  "parameterNotice": "本文件所有数字均为可更换的首轮测试参数，不是最终战斗规则或平衡数值。固定种子仅记录；本场无随机伤害、命中或闪避。",
+  "seed": 20261114,
+  "randomUsed": false,
+  "alliesIncludeSelf": true,
+  "maxUnitsPerTeam": 6,
+  "gridRows": 3,
+  "gridColumns": 3,
+  "capacity": {
+    "baseSlots": 1.0,
+    "slotsPerIntelligence": 0.1,
+    "minimumSlots": 1,
+    "maximumSlots": 6,
+    "secondConditionAtIntelligence": 20,
+    "thirdConditionAtIntelligence": 40
+  },
+  "actions": [
+    {
+      "id": "first_aid",
+      "displayName": "急救",
+      "effectKind": "heal",
+      "magnitude": 45,
+      "mpCost": 6,
+      "baseWait": 40.0
+    },
+    {
+      "id": "basic_attack",
+      "displayName": "普攻",
+      "effectKind": "damage",
+      "magnitude": 18,
+      "mpCost": 0,
+      "baseWait": 60.0
+    }
+  ],
+  "units": [
+    {
+      "id": "mage",
+      "name": "法师",
+      "team": "friendly",
+      "row": 2,
+      "column": 1,
+      "maxHp": 100,
+      "hp": 100,
+      "maxMp": 30,
+      "mp": 30,
+      "intelligence": 40,
+      "agilityFactor": 1.0,
+      "initialReadyTime": 0.0,
+      "vulnerable": false,
+      "instructions": [
+        {
+          "id": "emergency_heal",
+          "label": "先救濒危队友",
+          "condition": {
+            "operation": "all",
+            "terms": [{ "kind": "hp_ratio_at_most", "threshold": 0.35 }]
+          },
+          "scope": "allies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "first_aid"
+        },
+        {
+          "id": "fallback_attack",
+          "label": "否则攻击低血敌人",
+          "condition": {
+            "operation": "all",
+            "terms": [{ "kind": "always", "threshold": 0.0 }]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "basic_attack"
+        }
+      ]
+    },
+    {
+      "id": "ally",
+      "name": "队友",
+      "team": "friendly",
+      "row": 0,
+      "column": 1,
+      "maxHp": 100,
+      "hp": 20,
+      "maxMp": 10,
+      "mp": 10,
+      "intelligence": 10,
+      "agilityFactor": 1.0,
+      "initialReadyTime": 10.0,
+      "vulnerable": false,
+      "instructions": [
+        {
+          "id": "ally_attack",
+          "label": "攻击低血敌人",
+          "condition": {
+            "operation": "all",
+            "terms": [{ "kind": "always", "threshold": 0.0 }]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "basic_attack"
+        }
+      ]
+    },
+    {
+      "id": "enemy_low",
+      "name": "敌人甲（低血）",
+      "team": "hostile",
+      "row": 0,
+      "column": 0,
+      "maxHp": 100,
+      "hp": 35,
+      "maxMp": 10,
+      "mp": 10,
+      "intelligence": 10,
+      "agilityFactor": 1.0,
+      "initialReadyTime": 20.0,
+      "vulnerable": false,
+      "instructions": [
+        {
+          "id": "enemy_low_attack",
+          "label": "攻击低血对手",
+          "condition": {
+            "operation": "all",
+            "terms": [{ "kind": "always", "threshold": 0.0 }]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "basic_attack"
+        }
+      ]
+    },
+    {
+      "id": "enemy_high",
+      "name": "敌人乙（高血）",
+      "team": "hostile",
+      "row": 1,
+      "column": 2,
+      "maxHp": 100,
+      "hp": 80,
+      "maxMp": 10,
+      "mp": 10,
+      "intelligence": 10,
+      "agilityFactor": 1.0,
+      "initialReadyTime": 30.0,
+      "vulnerable": false,
+      "instructions": [
+        {
+          "id": "enemy_high_attack",
+          "label": "攻击低血对手",
+          "condition": {
+            "operation": "all",
+            "terms": [{ "kind": "always", "threshold": 0.0 }]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "basic_attack"
+        }
+      ]
+    }
+  ]
+}

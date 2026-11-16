@@ -1,0 +1,15 @@
+{
+  "name": "Prototype.Tactics.EditModeTests",
+  "rootNamespace": "Prototype.Tactics.Tests",
+  "references": ["Prototype.Tactics", "Prototype.Combat", "Prototype.Expedition", "Prototype.BaseEconomy"],
+  "includePlatforms": ["Editor"],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "noEngineReferences": false
+}

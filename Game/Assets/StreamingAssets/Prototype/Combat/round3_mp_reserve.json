@@ -1,0 +1,246 @@
+{
+  "id": "round3-mp-reserve",
+  "title": "预留MP救人：只改强攻的自身MP比例门槛",
+  "parameterNotice": "第三轮指令编辑试玩配置，全部HP/MP/伤害/WAIT/容量均为可替换测试参数；不含随机抽样。条件缺省逐候选读取，subject=actor明确读取行动者。",
+  "seed": 20261114,
+  "randomUsed": false,
+  "alliesIncludeSelf": true,
+  "maxUnitsPerTeam": 6,
+  "gridRows": 3,
+  "gridColumns": 3,
+  "playerTeam": "friendly",
+  "maxEvents": 2000,
+  "maxWait": 20000,
+  "capacity": {
+    "baseSlots": 1,
+    "slotsPerIntelligence": 0.1,
+    "minimumSlots": 1,
+    "maximumSlots": 6,
+    "secondConditionAtIntelligence": 20,
+    "thirdConditionAtIntelligence": 40
+  },
+  "actions": [
+    {
+      "id": "tactics_first_aid",
+      "displayName": "急救",
+      "effectKind": "heal",
+      "magnitude": 40,
+      "mpCost": 6,
+      "baseWait": 30
+    },
+    {
+      "id": "tactics_quick_attack",
+      "displayName": "轻击",
+      "effectKind": "damage",
+      "magnitude": 12,
+      "mpCost": 0,
+      "baseWait": 40
+    },
+    {
+      "id": "tactics_power_attack",
+      "displayName": "强力攻击",
+      "effectKind": "damage",
+      "magnitude": 30,
+      "mpCost": 12,
+      "baseWait": 40
+    },
+    {
+      "id": "tactics_focus_mark",
+      "displayName": "施加集火标记",
+      "effectKind": "apply_status",
+      "magnitude": 1,
+      "mpCost": 4,
+      "baseWait": 30,
+      "statusId": "focus_mark",
+      "statusKind": "vulnerable",
+      "statusMagnitude": 0,
+      "statusDuration": 200
+    },
+    {
+      "id": "tactics_guard_stance",
+      "displayName": "短时护卫",
+      "effectKind": "apply_status",
+      "magnitude": 1,
+      "mpCost": 3,
+      "baseWait": 25,
+      "statusId": "guard_stance",
+      "statusKind": "guard",
+      "statusMagnitude": 6,
+      "statusDuration": 80
+    },
+    {
+      "id": "tactics_enemy_strike",
+      "displayName": "持续重击",
+      "effectKind": "damage",
+      "magnitude": 25,
+      "mpCost": 0,
+      "baseWait": 40
+    }
+  ],
+  "units": [
+    {
+      "id": "mage",
+      "name": "法师",
+      "team": "friendly",
+      "row": 2,
+      "column": 1,
+      "hp": 100,
+      "maxHp": 100,
+      "mp": 24,
+      "maxMp": 24,
+      "intelligence": 40,
+      "agilityFactor": 1,
+      "initialReadyTime": 0,
+      "vulnerable": false,
+      "instructions": [
+        {
+          "id": "emergency_heal",
+          "label": "濒危优先急救",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "hp_ratio_at_most",
+                "threshold": 0.35,
+                "value": "",
+                "subject": "target"
+              }
+            ]
+          },
+          "scope": "allies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "tactics_first_aid"
+        },
+        {
+          "id": "conditional_power",
+          "label": "按自身MP比例使用强攻",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "mp_ratio_at_least",
+                "threshold": 0,
+                "value": "",
+                "subject": "actor"
+              }
+            ]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "tactics_power_attack"
+        },
+        {
+          "id": "fallback_attack",
+          "label": "零消耗普攻兜底",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "always",
+                "threshold": 0,
+                "value": "",
+                "subject": "target"
+              }
+            ]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "tactics_quick_attack"
+        }
+      ],
+      "statuses": [],
+      "equipmentDamageBonus": 0,
+      "equipmentSourceId": "round3_training_weapon",
+      "availableActionIds": [
+        "tactics_first_aid",
+        "tactics_quick_attack",
+        "tactics_power_attack",
+        "tactics_focus_mark",
+        "tactics_guard_stance"
+      ]
+    },
+    {
+      "id": "ally",
+      "name": "队友",
+      "team": "friendly",
+      "row": 0,
+      "column": 1,
+      "hp": 80,
+      "maxHp": 100,
+      "mp": 10,
+      "maxMp": 10,
+      "intelligence": 10,
+      "agilityFactor": 1,
+      "initialReadyTime": 10,
+      "vulnerable": false,
+      "instructions": [
+        {
+          "id": "ally_attack",
+          "label": "持续输出",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "always",
+                "threshold": 0,
+                "value": "",
+                "subject": "target"
+              }
+            ]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "tactics_quick_attack"
+        }
+      ],
+      "statuses": [],
+      "equipmentDamageBonus": 0,
+      "equipmentSourceId": "round3_training_weapon",
+      "availableActionIds": [
+        "tactics_quick_attack",
+        "tactics_guard_stance"
+      ]
+    },
+    {
+      "id": "enemy_heavy",
+      "name": "重装打手",
+      "team": "hostile",
+      "row": 0,
+      "column": 1,
+      "hp": 168,
+      "maxHp": 168,
+      "mp": 0,
+      "maxMp": 0,
+      "intelligence": 10,
+      "agilityFactor": 1,
+      "initialReadyTime": 20,
+      "vulnerable": false,
+      "instructions": [
+        {
+          "id": "enemy_attack",
+          "label": "压低血线",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "always",
+                "threshold": 0,
+                "value": "",
+                "subject": "target"
+              }
+            ]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "tactics_enemy_strike"
+        }
+      ],
+      "statuses": [],
+      "equipmentDamageBonus": 0,
+      "equipmentSourceId": "round3_training_weapon",
+      "availableActionIds": [
+        "tactics_enemy_strike"
+      ]
+    }
+  ]
+}

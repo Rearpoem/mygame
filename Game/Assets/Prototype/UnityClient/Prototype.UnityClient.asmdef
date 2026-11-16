@@ -1,0 +1,14 @@
+{
+  "name": "Prototype.UnityClient",
+  "rootNamespace": "Prototype.UnityClient",
+  "references": [
+    "Prototype.Combat",
+    "Prototype.BaseEconomy",
+    "Prototype.Expedition",
+    "Prototype.Tactics",
+    "Unity.ugui",
+    "Unity.TextMeshPro",
+    "Unity.InputSystem"
+  ],
+  "autoReferenced": true
+}

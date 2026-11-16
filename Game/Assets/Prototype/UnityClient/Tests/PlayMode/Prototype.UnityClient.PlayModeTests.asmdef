@@ -1,0 +1,15 @@
+{
+  "name": "Prototype.UnityClient.PlayModeTests",
+  "rootNamespace": "Prototype.UnityClient.Tests",
+  "references": [
+    "Prototype.UnityClient",
+    "Prototype.Combat",
+    "Prototype.BaseEconomy",
+    "Prototype.Expedition",
+    "Prototype.Tactics",
+    "Unity.ugui",
+    "Unity.TextMeshPro"
+  ],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "autoReferenced": false
+}

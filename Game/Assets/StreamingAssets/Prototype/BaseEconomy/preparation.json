@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "public-drop-private-auxiliary-enhancement-v1",
+  "testValueNotice": "第二轮可替换测试值：只验证公共掉落、私人采购与一次装备强化，不代表正式数值。",
+  "publicOwnerId": "public",
+  "publicOwnerName": "公共库",
+  "residentId": "resident-xuhe",
+  "residentName": "许禾",
+  "combatantId": "guard-linen",
+  "combatantName": "林恩",
+  "weaponInstanceId": "guard-linen-sword-001",
+  "weaponName": "巡卫短剑",
+  "oreItemId": "expedition-ore",
+  "oreItemName": "出征矿料",
+  "auxiliaryItemId": "quenching-sand",
+  "auxiliaryItemName": "淬火砂",
+  "initialTreasuryCash": 100,
+  "initialResidentCash": 20,
+  "initialPublicOre": 0,
+  "initialPublicAuxiliary": 0,
+  "initialResidentAuxiliary": 2,
+  "initialWeaponEnhancementLevel": 0,
+  "initialWeaponAttackBonus": 0,
+  "auxiliaryUnitPrice": 6,
+  "purchaseQuantity": 2,
+  "oreRequired": 3,
+  "auxiliaryRequired": 2,
+  "enhancementAttackBonus": 4,
+  "presetExpeditionDrop": {
+    "settlementId": "expedition-001-encounter-001-reward",
+    "expeditionId": "expedition-001",
+    "encounterId": "encounter-001",
+    "cashReward": 0,
+    "items": [
+      { "itemId": "expedition-ore", "quantity": 3 }
+    ]
+  }
+}

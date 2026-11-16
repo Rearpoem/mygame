@@ -1,0 +1,122 @@
+{
+  "id": "round2-equipment",
+  "title": "装备强化调用：同一普攻三击与两击",
+  "parameterNotice": "第二轮可替换试玩参数；所有伤害/治疗/WAIT/容量/状态/奖励均非正式平衡规则。固定种子仅记录，本配置无随机抽样。",
+  "seed": 20261114,
+  "randomUsed": false,
+  "alliesIncludeSelf": true,
+  "maxUnitsPerTeam": 6,
+  "gridRows": 3,
+  "gridColumns": 3,
+  "capacity": {
+    "baseSlots": 1,
+    "slotsPerIntelligence": 0.1,
+    "minimumSlots": 1,
+    "maximumSlots": 6,
+    "secondConditionAtIntelligence": 20,
+    "thirdConditionAtIntelligence": 40
+  },
+  "actions": [
+    {
+      "id": "first_aid",
+      "displayName": "急救",
+      "effectKind": "heal",
+      "magnitude": 45,
+      "mpCost": 6,
+      "baseWait": 40
+    },
+    {
+      "id": "basic_attack",
+      "displayName": "普攻",
+      "effectKind": "damage",
+      "magnitude": 18,
+      "mpCost": 0,
+      "baseWait": 60
+    },
+    {
+      "id": "dummy_strike",
+      "displayName": "试炼打击",
+      "effectKind": "damage",
+      "magnitude": 8,
+      "mpCost": 0,
+      "baseWait": 60
+    }
+  ],
+  "units": [
+    {
+      "id": "mage",
+      "name": "持剑队员",
+      "team": "friendly",
+      "row": 2,
+      "column": 1,
+      "maxHp": 100,
+      "hp": 100,
+      "maxMp": 0,
+      "mp": 0,
+      "intelligence": 10,
+      "agilityFactor": 1,
+      "initialReadyTime": 0,
+      "vulnerable": false,
+      "instructions": [
+        {
+          "id": "weapon_attack",
+          "label": "读取装备加值的普攻",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "always",
+                "threshold": 0
+              }
+            ]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "basic_attack"
+        }
+      ],
+      "statuses": [],
+      "equipmentDamageBonus": 0,
+      "equipmentSourceId": "training_weapon"
+    },
+    {
+      "id": "enemy_low",
+      "name": "试炼对手",
+      "team": "hostile",
+      "row": 0,
+      "column": 0,
+      "maxHp": 54,
+      "hp": 54,
+      "maxMp": 0,
+      "mp": 0,
+      "intelligence": 10,
+      "agilityFactor": 1,
+      "initialReadyTime": 20,
+      "vulnerable": false,
+      "instructions": [
+        {
+          "id": "enemy_low_attack",
+          "label": "攻击低血对手",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "always",
+                "threshold": 0
+              }
+            ]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "dummy_strike"
+        }
+      ],
+      "statuses": [],
+      "equipmentDamageBonus": 0,
+      "equipmentSourceId": "training_weapon"
+    }
+  ],
+  "playerTeam": "friendly",
+  "maxEvents": 2000,
+  "maxWait": 20000
+}

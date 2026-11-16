@@ -1,0 +1,12 @@
+Noto Sans CJK SC Regular, unmodified OpenType source.
+Official upstream: https://github.com/notofonts/noto-cjk
+Font source: https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf
+License source: https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/LICENSE
+Downloaded 2026-11-14. See OFL.txt for SIL Open Font License 1.1.
+Font SHA256: 2C76254F6FC379FDDFCE0A7E84FB5385BB135D3E399294F6EEB6680D0365B74B
+
+The explicit Prototype/Generate Hub menu or batch method builds a Dynamic
+TextMeshPro font asset from this source, enables multiple atlases, and prewarms
+characters found in this prototype's C# and JSON files. The original source font
+is included by the font asset so additional Chinese text can populate at run time.
+No Windows system font is used or redistributed.

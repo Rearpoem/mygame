@@ -1,0 +1,669 @@
+{
+  "id": "round4-control",
+  "title": "冰缚与直接进攻：只改控制的HP门槛",
+  "parameterNotice": "第四轮法师瞬发试玩配置。全部伤害/MP/WAIT/状态/容量为可替换参数；不含AP/PP、随机命中、DoT、咏唱或复活。技能池较大但智力仍只提供有限指令槽。",
+  "seed": 20261114,
+  "randomUsed": false,
+  "alliesIncludeSelf": true,
+  "maxUnitsPerTeam": 6,
+  "gridRows": 3,
+  "gridColumns": 3,
+  "playerTeam": "friendly",
+  "maxEvents": 3000,
+  "maxWait": 20000,
+  "capacity": {
+    "baseSlots": 1,
+    "slotsPerIntelligence": 0.1,
+    "minimumSlots": 1,
+    "maximumSlots": 6,
+    "secondConditionAtIntelligence": 20,
+    "thirdConditionAtIntelligence": 40
+  },
+  "actions": [
+    {
+      "id": "mage_meditate",
+      "displayName": "冥想",
+      "effectKind": "restore_mp",
+      "magnitude": 12,
+      "mpCost": 0,
+      "baseWait": 60,
+      "targetMode": "single",
+      "isMagic": false,
+      "damageType": "legacy"
+    },
+    {
+      "id": "mage_quick_breath",
+      "displayName": "紧急吐纳",
+      "effectKind": "restore_mp",
+      "magnitude": 4,
+      "mpCost": 0,
+      "baseWait": 25,
+      "targetMode": "single",
+      "isMagic": false,
+      "damageType": "legacy"
+    },
+    {
+      "id": "mage_mana_transfer",
+      "displayName": "魔力转移",
+      "effectKind": "restore_mp",
+      "magnitude": 8,
+      "mpCost": 8,
+      "baseWait": 35,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic"
+    },
+    {
+      "id": "mage_mana_drain",
+      "displayName": "汲取魔力",
+      "effectKind": "drain_mp",
+      "magnitude": 8,
+      "mpCost": 0,
+      "baseWait": 45,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic"
+    },
+    {
+      "id": "mage_staff",
+      "displayName": "法杖敲击",
+      "effectKind": "damage",
+      "magnitude": 8,
+      "mpCost": 0,
+      "baseWait": 40,
+      "targetMode": "single",
+      "isMagic": false,
+      "damageType": "physical"
+    },
+    {
+      "id": "mage_firebolt",
+      "displayName": "火弹",
+      "effectKind": "damage",
+      "magnitude": 28,
+      "mpCost": 8,
+      "baseWait": 40,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic"
+    },
+    {
+      "id": "mage_arcane_lance",
+      "displayName": "奥术长矛",
+      "effectKind": "damage",
+      "magnitude": 45,
+      "mpCost": 16,
+      "baseWait": 70,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic"
+    },
+    {
+      "id": "mage_chain_lightning",
+      "displayName": "整排雷击",
+      "effectKind": "damage",
+      "magnitude": 16,
+      "mpCost": 12,
+      "baseWait": 55,
+      "targetMode": "row",
+      "isMagic": true,
+      "damageType": "magic"
+    },
+    {
+      "id": "mage_fire_rain",
+      "displayName": "全体火雨",
+      "effectKind": "damage",
+      "magnitude": 14,
+      "mpCost": 14,
+      "baseWait": 65,
+      "targetMode": "all",
+      "isMagic": true,
+      "damageType": "magic"
+    },
+    {
+      "id": "mage_piercing_ray",
+      "displayName": "纵列射线",
+      "effectKind": "damage",
+      "magnitude": 20,
+      "mpCost": 10,
+      "baseWait": 55,
+      "targetMode": "column",
+      "isMagic": true,
+      "damageType": "magic"
+    },
+    {
+      "id": "mage_first_aid",
+      "displayName": "急救",
+      "effectKind": "heal",
+      "magnitude": 30,
+      "mpCost": 6,
+      "baseWait": 30,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic"
+    },
+    {
+      "id": "mage_greater_heal",
+      "displayName": "大治疗",
+      "effectKind": "heal",
+      "magnitude": 60,
+      "mpCost": 12,
+      "baseWait": 60,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic"
+    },
+    {
+      "id": "mage_group_heal",
+      "displayName": "群体恢复",
+      "effectKind": "heal",
+      "magnitude": 20,
+      "mpCost": 12,
+      "baseWait": 55,
+      "targetMode": "all",
+      "isMagic": true,
+      "damageType": "magic"
+    },
+    {
+      "id": "mage_stone_skin",
+      "displayName": "石肤护盾",
+      "effectKind": "apply_status",
+      "magnitude": 1,
+      "mpCost": 4,
+      "baseWait": 25,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic",
+      "statusId": "mage_stone_skin_state",
+      "statusKind": "guard",
+      "statusMagnitude": 6,
+      "statusDuration": 80
+    },
+    {
+      "id": "mage_mass_guard",
+      "displayName": "群体护盾",
+      "effectKind": "apply_status",
+      "magnitude": 1,
+      "mpCost": 12,
+      "baseWait": 55,
+      "targetMode": "all",
+      "isMagic": true,
+      "damageType": "magic",
+      "statusId": "mage_mass_guard_state",
+      "statusKind": "guard",
+      "statusMagnitude": 4,
+      "statusDuration": 100
+    },
+    {
+      "id": "mage_magic_barrier",
+      "displayName": "魔法屏障",
+      "effectKind": "apply_status",
+      "magnitude": 1,
+      "mpCost": 5,
+      "baseWait": 30,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic",
+      "statusId": "mage_magic_barrier_state",
+      "statusKind": "magic_guard",
+      "statusMagnitude": 10,
+      "statusDuration": 100
+    },
+    {
+      "id": "mage_empower",
+      "displayName": "魔力增幅",
+      "effectKind": "apply_status",
+      "magnitude": 1,
+      "mpCost": 6,
+      "baseWait": 35,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic",
+      "statusId": "mage_empower_state",
+      "statusKind": "empowered",
+      "statusMagnitude": 10,
+      "statusDuration": 100
+    },
+    {
+      "id": "mage_focus_mark",
+      "displayName": "易伤标记",
+      "effectKind": "apply_status",
+      "magnitude": 1,
+      "mpCost": 3,
+      "baseWait": 25,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic",
+      "statusId": "mage_focus_mark_state",
+      "statusKind": "vulnerable",
+      "statusMagnitude": 0,
+      "statusDuration": 150
+    },
+    {
+      "id": "mage_cleanse",
+      "displayName": "净化",
+      "effectKind": "cleanse",
+      "magnitude": 1,
+      "mpCost": 4,
+      "baseWait": 25,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic"
+    },
+    {
+      "id": "mage_group_cleanse",
+      "displayName": "广域净化",
+      "effectKind": "cleanse",
+      "magnitude": 1,
+      "mpCost": 12,
+      "baseWait": 60,
+      "targetMode": "all",
+      "isMagic": true,
+      "damageType": "magic"
+    },
+    {
+      "id": "mage_dispel",
+      "displayName": "驱散",
+      "effectKind": "dispel",
+      "magnitude": 1,
+      "mpCost": 5,
+      "baseWait": 35,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic"
+    },
+    {
+      "id": "mage_freeze",
+      "displayName": "冰缚",
+      "effectKind": "apply_status",
+      "magnitude": 1,
+      "mpCost": 8,
+      "baseWait": 25,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic",
+      "statusId": "mage_freeze_state",
+      "statusKind": "stunned",
+      "statusMagnitude": 0,
+      "statusDuration": 70
+    },
+    {
+      "id": "mage_silence",
+      "displayName": "沉默",
+      "effectKind": "apply_status",
+      "magnitude": 1,
+      "mpCost": 6,
+      "baseWait": 35,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic",
+      "statusId": "mage_silence_state",
+      "statusKind": "silenced",
+      "statusMagnitude": 0,
+      "statusDuration": 80
+    },
+    {
+      "id": "mage_weaken",
+      "displayName": "虚弱",
+      "effectKind": "apply_status",
+      "magnitude": 1,
+      "mpCost": 6,
+      "baseWait": 35,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic",
+      "statusId": "mage_weaken_state",
+      "statusKind": "weakened",
+      "statusMagnitude": 8,
+      "statusDuration": 100
+    },
+    {
+      "id": "mage_haste",
+      "displayName": "加速",
+      "effectKind": "apply_status",
+      "magnitude": 1,
+      "mpCost": 6,
+      "baseWait": 35,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic",
+      "statusId": "mage_haste_state",
+      "statusKind": "haste",
+      "statusMagnitude": 25,
+      "statusDuration": 100
+    },
+    {
+      "id": "mage_slow",
+      "displayName": "减速",
+      "effectKind": "apply_status",
+      "magnitude": 1,
+      "mpCost": 6,
+      "baseWait": 35,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic",
+      "statusId": "mage_slow_state",
+      "statusKind": "slow",
+      "statusMagnitude": 25,
+      "statusDuration": 100
+    },
+    {
+      "id": "mage_mass_weaken",
+      "displayName": "群体虚弱",
+      "effectKind": "apply_status",
+      "magnitude": 1,
+      "mpCost": 14,
+      "baseWait": 55,
+      "targetMode": "all",
+      "isMagic": true,
+      "damageType": "magic",
+      "statusId": "mage_mass_weaken_state",
+      "statusKind": "weakened",
+      "statusMagnitude": 5,
+      "statusDuration": 80
+    },
+    {
+      "id": "round4_ally_attack",
+      "displayName": "队友攻击",
+      "effectKind": "damage",
+      "magnitude": 10,
+      "mpCost": 0,
+      "baseWait": 50,
+      "targetMode": "single",
+      "isMagic": false,
+      "damageType": "physical"
+    },
+    {
+      "id": "round4_ally_cleanse",
+      "displayName": "队友解控",
+      "effectKind": "cleanse",
+      "magnitude": 1,
+      "mpCost": 2,
+      "baseWait": 35,
+      "targetMode": "single",
+      "isMagic": false,
+      "damageType": "legacy"
+    },
+    {
+      "id": "round4_ally_guard",
+      "displayName": "队友格挡",
+      "effectKind": "apply_status",
+      "magnitude": 1,
+      "mpCost": 2,
+      "baseWait": 30,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic",
+      "statusId": "round4_ally_guard_state",
+      "statusKind": "guard",
+      "statusMagnitude": 5,
+      "statusDuration": 80
+    },
+    {
+      "id": "round4_enemy_attack",
+      "displayName": "敌方轻击",
+      "effectKind": "damage",
+      "magnitude": 12,
+      "mpCost": 0,
+      "baseWait": 50,
+      "targetMode": "single",
+      "isMagic": false,
+      "damageType": "physical"
+    },
+    {
+      "id": "round4_enemy_heavy",
+      "displayName": "敌方重击",
+      "effectKind": "damage",
+      "magnitude": 18,
+      "mpCost": 0,
+      "baseWait": 40,
+      "targetMode": "single",
+      "isMagic": false,
+      "damageType": "physical"
+    },
+    {
+      "id": "round4_enemy_lethal",
+      "displayName": "致命威胁",
+      "effectKind": "damage",
+      "magnitude": 80,
+      "mpCost": 0,
+      "baseWait": 60,
+      "targetMode": "single",
+      "isMagic": false,
+      "damageType": "physical"
+    },
+    {
+      "id": "round4_enemy_magic",
+      "displayName": "敌方法术",
+      "effectKind": "damage",
+      "magnitude": 16,
+      "mpCost": 0,
+      "baseWait": 50,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic"
+    },
+    {
+      "id": "round4_enemy_silence",
+      "displayName": "敌方沉默",
+      "effectKind": "apply_status",
+      "magnitude": 1,
+      "mpCost": 4,
+      "baseWait": 40,
+      "targetMode": "single",
+      "isMagic": true,
+      "damageType": "magic",
+      "statusId": "round4_enemy_silence_state",
+      "statusKind": "silenced",
+      "statusMagnitude": 0,
+      "statusDuration": 80
+    }
+  ],
+  "units": [
+    {
+      "id": "mage",
+      "name": "法师",
+      "team": "friendly",
+      "row": 2,
+      "column": 1,
+      "hp": 100,
+      "maxHp": 100,
+      "mp": 30,
+      "maxMp": 30,
+      "intelligence": 40,
+      "agilityFactor": 1,
+      "initialReadyTime": 0,
+      "vulnerable": false,
+      "instructions": [
+        {
+          "id": "freeze_threat",
+          "label": "控制尚未冰缚的目标",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "hp_ratio_at_most",
+                "threshold": 0.2,
+                "value": "",
+                "subject": "target"
+              },
+              {
+                "kind": "lacks_status",
+                "threshold": 0,
+                "value": "mage_freeze_state",
+                "subject": "target"
+              }
+            ]
+          },
+          "scope": "enemies",
+          "selector": "configured_order",
+          "actionId": "mage_freeze"
+        },
+        {
+          "id": "cast_firebolt",
+          "label": "火弹进攻",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "always",
+                "threshold": 0,
+                "value": "",
+                "subject": "target"
+              }
+            ]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "mage_firebolt"
+        },
+        {
+          "id": "staff_fallback",
+          "label": "MP不足法杖兜底",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "always",
+                "threshold": 0,
+                "value": "",
+                "subject": "target"
+              }
+            ]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "mage_staff"
+        }
+      ],
+      "statuses": [],
+      "equipmentDamageBonus": 0,
+      "equipmentSourceId": "round4_training_weapon",
+      "availableActionIds": [
+        "mage_meditate",
+        "mage_quick_breath",
+        "mage_mana_transfer",
+        "mage_mana_drain",
+        "mage_staff",
+        "mage_firebolt",
+        "mage_arcane_lance",
+        "mage_chain_lightning",
+        "mage_fire_rain",
+        "mage_piercing_ray",
+        "mage_first_aid",
+        "mage_greater_heal",
+        "mage_group_heal",
+        "mage_stone_skin",
+        "mage_mass_guard",
+        "mage_magic_barrier",
+        "mage_empower",
+        "mage_focus_mark",
+        "mage_cleanse",
+        "mage_group_cleanse",
+        "mage_dispel",
+        "mage_freeze",
+        "mage_silence",
+        "mage_weaken",
+        "mage_haste",
+        "mage_slow",
+        "mage_mass_weaken"
+      ],
+      "availableActionIdsExplicit": true,
+      "tags": [
+        "mage",
+        "caster"
+      ]
+    },
+    {
+      "id": "ally",
+      "name": "队友",
+      "team": "friendly",
+      "row": 0,
+      "column": 1,
+      "hp": 30,
+      "maxHp": 100,
+      "mp": 10,
+      "maxMp": 10,
+      "intelligence": 10,
+      "agilityFactor": 1,
+      "initialReadyTime": 10,
+      "vulnerable": false,
+      "instructions": [
+        {
+          "id": "ally_attack",
+          "label": "持续攻击",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "always",
+                "threshold": 0,
+                "value": "",
+                "subject": "target"
+              }
+            ]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "round4_ally_attack"
+        }
+      ],
+      "statuses": [],
+      "equipmentDamageBonus": 0,
+      "equipmentSourceId": "round4_training_weapon",
+      "availableActionIds": [
+        "round4_ally_attack",
+        "round4_ally_cleanse",
+        "round4_ally_guard"
+      ],
+      "availableActionIdsExplicit": true,
+      "tags": [
+        "fighter"
+      ]
+    },
+    {
+      "id": "enemy",
+      "name": "威胁者",
+      "team": "hostile",
+      "row": 0,
+      "column": 0,
+      "hp": 60,
+      "maxHp": 100,
+      "mp": 0,
+      "maxMp": 0,
+      "intelligence": 10,
+      "agilityFactor": 1,
+      "initialReadyTime": 20,
+      "vulnerable": false,
+      "instructions": [
+        {
+          "id": "enemy_attack",
+          "label": "持续施压",
+          "condition": {
+            "operation": "all",
+            "terms": [
+              {
+                "kind": "always",
+                "threshold": 0,
+                "value": "",
+                "subject": "target"
+              }
+            ]
+          },
+          "scope": "enemies",
+          "selector": "lowest_hp_ratio",
+          "actionId": "round4_enemy_lethal"
+        }
+      ],
+      "statuses": [],
+      "equipmentDamageBonus": 0,
+      "equipmentSourceId": "round4_training_weapon",
+      "availableActionIds": [
+        "round4_enemy_lethal"
+      ],
+      "availableActionIdsExplicit": true,
+      "tags": [
+        "enemy"
+      ]
+    }
+  ]
+}

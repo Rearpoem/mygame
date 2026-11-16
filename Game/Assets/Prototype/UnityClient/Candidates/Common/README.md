@@ -1,0 +1,18 @@
+# Shared candidate boundary
+
+`TacticsSharedController` is the only candidate command gateway. It binds the existing `TacticsPanelController`, its one workbench, its one raw instruction editor and its one playback view. The public legacy interface remains usable through the explicit legacy presentation.
+
+- Candidate owners only write their own `Candidates/Argon/**`, `Candidates/Hydrogen/**` or subsequently assigned real candidate directory. No candidate creates a workbench/session, calls Step from Update, or invokes hidden legacy buttons.
+- Derive from `TacticsCandidateView`, add `[TacticsCandidate("argon", "A …")]` (or the actual candidate ID), and implement `Initialize(font, shared)` and `RefreshView()`. Both are read-only presentation construction/refresh; host refreshes only the active view on `Changed`.
+- `GetState()` supplies real workbench copies, raw `TacticsFormInput`, catalog, battle/history, selection, actual target IDs, feedback and reports. Views may format these fields; they do not calculate condition truth, damage, rewards or target coverage.
+- Edit a copy of `state.form` and call `SetForm`. It preserves raw invalid/unfinished strings. Character/rule changes use the explicit selection commands. `SetActionSearch` only browses; matching counts and pinned selection come from the existing editor. Displayed percentages may be formatted, but the shared ratio text remains in 0..1 units.
+- `CommitBattle()` returns true only for this successful real commit and already starts automatic playback. `Compare()` and `SendToExpedition()` return this command's success. Other commands use the names in the controller source. No caller adds a second Step or automatic clock.
+- The host selects presentation only, pauses on switches, and keeps form/search/selection/loaded/draft/committed/history. A missing candidate is rejected in `SelectCandidate` itself; C has no surrogate implementation. Legacy is a separate explicit fallback.
+- Each candidate receives the canvas area below a single 40px global navigation band: 1280×860 at the 1280×900 reference. It owns all internal tabs, footer, spatial projection and component hierarchy. Core row/column and IDs never change when a view rotates its board.
+- `InspectUnit` and `SelectEvent` share selection across views. `reasonText` can contain a unit inspection; detailed event renderers can use the actual selected `history` entry. The board always uses current `battle`.
+- `state.followLatest` / `SetFollowLatest(bool)` are presentation state only. Selecting an older real event turns following off; new events retain that valid selection without stopping or adding a step. Enabling it selects the actual newest event. New commit, bind, reset and replay restore the default true. This selection and the sole playback clock persist across A/B/C switches.
+- Opus follows its real design's height match (1, or width match 0 below the 1280:900 aspect); leaving Opus restores A/B/legacy match .5. This belongs only to the Hub and changes no scenario coordinate or gameplay data.
+
+Five approved PNGs are copied unchanged under `Art/UICandidates/Common/Resources/PrototypeUI/Portraits`. `GetPortrait(unitId)` loads their real Sprite. `PrototypePortraitImporter` sets single-sprite import, alpha transparency, no mipmaps and no compression. Original source and approval remain in the external common asset manifest; decorative icons/frames are native UI placeholders.
+
+`link.xml` preserves this UI assembly because candidate registration uses attributes and runtime type discovery. No core runtime/configuration or historical package is changed by the presentation adapter.

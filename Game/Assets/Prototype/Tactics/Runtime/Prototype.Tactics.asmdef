@@ -1,0 +1,14 @@
+{
+  "name": "Prototype.Tactics",
+  "rootNamespace": "Prototype.Tactics",
+  "references": ["Prototype.Combat"],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": true
+}
