@@ -11,9 +11,13 @@
 - 本文件省略个人本机绝对路径、会话 ID、原始日志和转储。下文提供自含的项目状态与仓库相对源码入口；本地归档产物和外部研究另外标明，不要求读者具备原开发机器的路径。
 - 工程说明见 [Game/README.md](../../Game/README.md) 和 [Game/PLAY_WINDOWS.md](../../Game/PLAY_WINDOWS.md)。这些文档中的旧运行步骤必须结合当前退出故障状态阅读，不能把源码归档当作已经验证的修复。
 
-## 仓库与首推基线
+## 开源仓库与版本基线
 
-2026-11-16 已建立并完成首推：[t626644510/mygame](https://github.com/t626644510/mygame)，可见性 **PRIVATE**，默认分支 **main**。初始化源码基线为 `07bdb6089b475c833980c01a2ab82ca54a02b821`（`07bdb60`），共 440 个文件；首推时远端分支、GitHub commits API 与本地 HEAD 一致。后续文档和开发提交继续进入 [main](https://github.com/t626644510/mygame/tree/main)，初始化基线不代表永久最新提交。此次仅推送 `main`，未推送内部 checkpoint refs。
+2026-11-16，[t626644510/mygame](https://github.com/t626644510/mygame) 已按用户最新要求改为公开开源，可见性 **PUBLIC**（`isPrivate=false`），默认分支 **main**。GitHub 已识别 MIT，匿名访问仓库页面及原始 LICENSE 已核验。开源许可提交为 `5f4419c58caa7fb9ad87ddabdde688a3e996a25a`（`5f4419c`）；后续文档和开发提交继续进入 [main](https://github.com/t626644510/mygame/tree/main)，该提交不代表永久最新版本。
+
+此前先以 PRIVATE 完成首推，初始化源码基线为 `07bdb6089b475c833980c01a2ab82ca54a02b821`（`07bdb60`），首推共 440 个文件，远端分支、GitHub commits API 与本地 HEAD 一致。仅推送 `main`，未推送内部 checkpoint refs。
+
+根目录 [LICENSE](../../LICENSE) 对项目自有源码、构建脚本、配置和文档采用 MIT；[THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md) 保留 Noto 字体的 SIL OFL、TMP 导入资源的 Unity Companion License，并说明五张临时头像来自本项目 ComfyUI／Animagine XL 4.0 Opt 生成及适用的上游与素材使用边界。全部资产不能统称为 MIT，Unity 引擎和模型权重也不属于本项目 MIT 授权范围。
 
 已入库 Unity 源码、场景与配置、必要头像和字体及其 `.meta`、Packages／ProjectSettings、构建验证脚本和可移交文档。生成缓存、EXE／ZIP、原始截图与测试报告、模型通信附件、工作副本、事故日志／dump 和本机诊断资料未上传；原规划权威文件与外部研究也未迁入仓库。此归档保留当前开发基线，A/B 退出崩溃仍未修复，C 审核仍暂停，后续上下文仍仅按用户明确要求维护。
 
@@ -124,4 +128,4 @@ Gemini Flash 已在真实项目输入基础上提交世界观重构候选，**�
 | 世界观候选及审阅 | `outputs/antigravity_world_20261115/` 下的 `WORLD_REWRITE_CANDIDATE.md`、`REVIEW_NOTES.md` |
 | 退出事故技术审查 | `outputs/exit_incident_20261116/` 下的 `ENGINEERING_STATIC_REVIEW.md`、`INPUT_BACKEND_STATIC_OPTIONS.md`；原始取证内容不复制到仓库摘要 |
 
-本摘要记录的技术结论来自当前交付与离线事故审查；未在本次上下文维护中启动游戏、重跑测试、修改源码或重建包。已核验的私有仓库首推信息见上文；后续提交以仓库 `main` 为准，不把初始化基线写成永久最新版本。
+本摘要记录的技术结论来自当前交付与离线事故审查；未在本次上下文维护中启动游戏、重跑测试、修改源码或重建包。已核验的首推及开源信息见上文；后续提交以仓库 `main` 为准，不把初始化或许可提交写成永久最新版本。
