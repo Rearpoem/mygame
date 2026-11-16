@@ -49,8 +49,10 @@ Unity 条件指令战斗、基地经济与出征联动的开发原型。规则�
 
 项目上下文仅在用户明确要求时维护。主会话和专项会话负责讨论、调度与审阅，实际编码、取证、测试和打包由执行 Agent 完成；世界观候选、外部 UI 设计和研究资料不自动成为已采纳需求。
 
-## 资源与版本管理
+## 开源许可、资源与版本管理
 
-必要头像、中文字体和 `.meta` 随源码提交。Noto Sans CJK 字体来源与授权见 [SOURCE.txt](Game/Assets/Prototype/Art/Fonts/SOURCE.txt) 和 [OFL.txt](Game/Assets/Prototype/Art/Fonts/OFL.txt)。项目代码和其余资产尚未选定对外开源许可证，第三方资源仍按各自授权使用。
+项目自有源代码、构建脚本、配置和文档采用 [MIT License](LICENSE)。第三方字体、Unity / TextMeshPro 资源及依赖保留原许可；五张临时头像的实际生成来源和素材使用范围见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。这不意味着所有资源或模型都改授 MIT。
+
+必要头像、中文字体和 `.meta` 随源码提交。Noto Sans CJK 字体来源与授权见 [SOURCE.txt](Game/Assets/Prototype/Art/Fonts/SOURCE.txt) 和 [OFL.txt](Game/Assets/Prototype/Art/Fonts/OFL.txt)。
 
 `Library/`、`Temp/`、本机设置、生成测试报告、构建 EXE/ZIP、模型通信附件、缓存、崩溃转储及个人诊断日志均被忽略。历史说明中指向 `outputs/` 的链接是本地证据入口，首次克隆不会包含这些文件；当前上下文与构建入口不依赖外部研究工作区。
